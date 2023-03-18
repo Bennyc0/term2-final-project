@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/styles.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>More Information</h1>
+    <table>
+        <tr>
+            <th>Food Item:</th>
+            <td>{{ extra_information['name'].capitalize() }}</td>
+        </tr>
+
+        <tr>
+            <th>Calories:</th>
+            <td>{{ extra_information['calories'] }}</td>
+        </tr>
+
+        <tr>
+            <th>Serving Size (Grams):</th>
+            <td>{{ extra_information['serving_size_g'] }} g</td>
+        </tr>
+
+        <tr>
+            <th>Total Fat (Grams):</th>
+            <td>{{ extra_information['fat_total_g'] }} g</td>
+        </tr>
+
+        <tr>
+            <th>Saturated Fat (Grams):</th>
+            <td>{{ extra_information['fat_saturated_g'] }} g</td>
+        </tr>
+
+        <tr>
+            <th>Protein (Grams):</th>
+            <td>{{ extra_information['protein_g'] }} g</td>
+        </tr>
+
+        <tr>
+            <th>Sodium (Milligrams):</th>
+            <td>{{ extra_information['sodium_mg'] }} mg</td>
+        </tr>
+
+        <tr>
+            <th>Potassium (Milligrams):</th>
+            <td>{{ extra_information['potassium_mg'] }} mg</td>
+        </tr>
+
+        <tr>
+            <th>Cholesterol (Milligrams):</th>
+            <td>{{ extra_information['cholesterol_mg'] }} mg</td>
+        </tr>
+
+        <tr>
+            <th>Carbohydrates (Grams):</th>
+            <td>{{ extra_information['carbohydrates_total_g'] }} g</td>
+        </tr>
+
+        <tr>
+            <th>Fiber (Grams):</th>
+            <td>{{ extra_information['fiber_g'] }} g</td>
+        </tr>
+
+        <tr>
+            <th>Sugar (Grams):</th>
+            <td>{{ extra_information['sugar_g'] }} g</td>
+        </tr>
+    </table>
+
+    <a href="/">Home</a>
+</body>
+</html>
