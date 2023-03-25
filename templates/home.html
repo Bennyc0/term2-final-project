@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="/search-result" method="POST">
+    <form action="/home" method="POST">
         <input type="test" name="search_username" placeholder="Search Username">
         <input type="submit" value="Search">
     </form>
@@ -45,6 +45,6 @@
         {% endfor %}
       </table>  
 
-      <a href="/">Home</a>
+      <a href="{{ '/todays-intake/%s' %username }}">Today's Intake</a>
 </body>
 </html>

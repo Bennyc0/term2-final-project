@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/styles.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <h2>Food Intake Log</h2>
+        
+        <p>Sign up as a new user</p>
+        <form action="/store-user" method="POST">
+            <input type="text" name="username" placeholder="Enter a username">
+            <input type="email" name="email" placeholder="Enter your email">
+            <input type="password" name="password" placeholder="Enter a password">
+            <button class="submit-btn" type="submit">Sign Up</button>
+        </form>
+       
+        <p>Already have an account? </p><a href="/log-in">Log In</a>
+    </div>
+</body>
