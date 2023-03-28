@@ -1,3 +1,15 @@
+.container {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+}
+
+#error-msg {
+    border: 2px;
+    color: red;
+}
+
 td, th {
     border: 1px solid #dddddd;
     text-align: center;

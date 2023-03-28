@@ -20,7 +20,6 @@ def validate_user(email, password):
         }
 
     connect.close()
-
     return information['username']
 
 
@@ -33,18 +32,6 @@ def sign_up_user(username, email, password):
 
     connect.commit()
     connect.close()
-
-
-# # Get Username
-# def get_username(email, password):
-#     connect = sqlite3.connect(database_link)
-#     cursor = connect.cursor()
-
-#     result = cursor.execute('SELECT username FROM userbase WHERE email = ? AND password = ?', (email, password,))
-
-#     connect.close()
-
-#     return result
 
 
 # Store/Add Information
@@ -105,7 +92,6 @@ def get_date_information(username, date):
     return user_information
 
 
-
 # Get Information (From a specific row)
 def get_row_information(rowid):
     connect = sqlite3.connect(database_link)
@@ -124,7 +110,6 @@ def get_row_information(rowid):
         }
 
     connect.close()
-
     return instance
 
 

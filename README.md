@@ -7,12 +7,18 @@
     CREATE TABLE user_intake(time DATETIME, food_item CHAR, amount CHAR,  calories SMALLINT);
     CREATE TABLE userbase(username CHAR, email CHAR,  password CHAR);
 
+# Testing Account:
+    Username: Test User 1
+    Gmail: testUser1@gmail.com
+    Password: password
+
+
 # Add entries: Complete
 # Search for entries under a username: Complete
 # Edit/delete entries: Complete
 # Extra information of an entry: Complete
 # Today's intake: TBD
     More features?
-# Sign in/up: WIP
-# System revamp: WIP
-    Replace username search with automatic search for logged in user
+# Sign in/up: Works, TBD
+# Sign out: WIP
+# System revamp: TBD

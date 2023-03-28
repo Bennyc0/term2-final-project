@@ -13,7 +13,7 @@
         <h2>Food Intake Log</h2>
         
         <p>Log in as an existing user</p>
-        <p>{{ error_message }}</p>
+        <p id="error-msg">{{ error_message }}</p>
 
         <form action="/login" method="POST">
             <input type="email" name="email" placeholder="Enter your email">
@@ -21,6 +21,6 @@
             <button class="submit-btn" type="submit">Log in</button>
         </form>
        
-        <p>Don't have an account? </p><a href="/sign-up">Sign up here!</a>
+        <p>Don't have an account? <a href="/sign-up">Sign up here!</a></p>
     </div>
 </body>

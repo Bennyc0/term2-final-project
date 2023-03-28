@@ -24,7 +24,7 @@ def login():
         return redirect(url_for('home'))
 
     else:
-        return redirect(url_for('index'))
+        return render_template('login.html', error_message='Invalid Gmail or Password, Please Try Again')
 
 
 @app.route('/sign-up')
@@ -43,6 +43,13 @@ def store_user():
     return redirect(url_for('index'))
 
 
+@app.route('/logout')
+def logout():
+    logged_in_username = ""
+
+    return redirect(url_for('index'))
+
+
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     global logged_in_username
@@ -54,6 +61,9 @@ def home():
         food_item = request.form['food_item'].capitalize()
         amount = request.form['amount']
         calories = get_calories(food_item, amount)
+
+        if amount == "":
+            amount = "100g"
 
         dbf.store_information(logged_in_username, time, food_item, amount, calories)
 
@@ -90,11 +100,10 @@ def todays_intake():
         return redirect(url_for('index'))
 
 
-
 @app.route('/more-information/<rowid>', methods=['GET', 'POST'])
 def more_information(rowid):
     row_information = dbf.get_row_information(rowid)
-    extra_information = dbf.get_more_info(row_information['food_item'], row_information['amount'])
+    extra_information = get_more_info(row_information['food_item'], row_information['amount'])
 
     if logged_in_username != "":
         return render_template('more-information.html', extra_information=extra_information)
