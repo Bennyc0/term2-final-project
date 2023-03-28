@@ -8,7 +8,9 @@ def validate_user(email, password):
     cursor = connect.cursor()
 
     result = cursor.execute('SELECT * FROM userbase WHERE email = ? AND password = ?', (email, password))
-    information = {}
+    information = {
+        "username": ""
+    }
     
     for item in result:
         information = {
@@ -19,7 +21,7 @@ def validate_user(email, password):
 
     connect.close()
 
-    return information
+    return information['username']
 
 
 # User Sign Up
@@ -29,20 +31,20 @@ def sign_up_user(username, email, password):
 
     cursor.execute('INSERT INTO userbase(username, email, password) VALUES (?, ?, ?)', (username, email, password))
 
-    connect.commit
+    connect.commit()
     connect.close()
 
 
-# Get Username
-def get_username(email):
-    connect = sqlite3.connect(database_link)
-    cursor = connect.cursor()
+# # Get Username
+# def get_username(email, password):
+#     connect = sqlite3.connect(database_link)
+#     cursor = connect.cursor()
 
-    result = cursor.execute('SELECT username FROM userbase WHERE email = ?', (email))
+#     result = cursor.execute('SELECT username FROM userbase WHERE email = ? AND password = ?', (email, password,))
 
-    connect.close()
+#     connect.close()
 
-    return result
+#     return result
 
 
 # Store/Add Information

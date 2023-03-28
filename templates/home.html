@@ -10,14 +10,29 @@
 
 <body>
     <form action="/home" method="POST">
+        <div>
+            <div>
+                <label for="food_item">Enter Food Item:</label>
+                <input type="text" id="food_item" name="food_item" placeholder="Food Item">
+            </div>
+
+            <div>
+                <label for="amount">Enter Amount:</label>
+                <input type="text" id="amount" name="amount" value="100g">
+            </div>
+
+            <input type="submit" value="Add Entry">
+        </div>
+    </form>
+
+    <form action="/home" method="POST">
         <input type="test" name="search_username" placeholder="Search Username">
         <input type="submit" value="Search">
     </form>
 
-    <h1>Your Entries</h1>
+    <h1>Entries for {{ logged_in_username }}</h1>
     <table>
         <tr>
-          <th>Username</th>
           <th>Time</th>
           <th>Food Item</th>
           <th>Amount</th>
@@ -27,7 +42,6 @@
         </tr>
         {% for instance in user_information %}
             <tr>
-                <td>{{ instance["username"] }}</td>
                 <td>{{ instance["time"] }}</td>
                 <td>{{ instance["food_item"] }}</td>
                 <td>{{ instance["amount"] }}</td>
@@ -45,6 +59,6 @@
         {% endfor %}
       </table>  
 
-      <a href="{{ '/todays-intake/%s' %username }}">Today's Intake</a>
+      <a href="/todays-intake">Today's Intake</a>
 </body>
 </html>

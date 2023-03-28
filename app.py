@@ -4,20 +4,24 @@ from datetime import datetime
 import db_functions as dbf
 
 app = Flask(__name__)
+logged_in_username = ""
 
 @app.route('/')
 def index():
-    return render_template('log-in.html')
+    return render_template('login.html')
+
 
 @app.route('/login', methods=['POST'])
-def log_in():
+def login():
+    global logged_in_username
+
     email = request.form['email']
     password = request.form['password']
 
-    if dbf.validate_user(email, password):
-        username = dbf.get_username(email)
+    logged_in_username = dbf.validate_user(email, password)
 
-        return render_template('home.html', username=username)
+    if logged_in_username != "":
+        return redirect(url_for('home'))
 
     else:
         return redirect(url_for('index'))
@@ -28,7 +32,7 @@ def sign_up():
     return render_template('sign-up.html')
 
 
-@app.route('/store-user', methods=['POST'])
+@app.route('/store-user', methods=['GET', 'POST'])
 def store_user():
     username = request.form['username']
     email = request.form['email']
@@ -41,6 +45,8 @@ def store_user():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
+    global logged_in_username
+    
     try:
         current_datetime = datetime.now()
 
@@ -49,32 +55,39 @@ def home():
         amount = request.form['amount']
         calories = get_calories(food_item, amount)
 
-        dbf.store_information(username, time, food_item, amount, calories)
+        dbf.store_information(logged_in_username, time, food_item, amount, calories)
 
     except:
         pass
-
-    if request.method == 'POST':
-        user_information = dbf.get_user_information(username)
-
-        return render_template('home.html', username=username, user_information=user_information)
     
-    else:
+    if logged_in_username == "":
         return redirect(url_for('index'))
 
+    elif request.method == 'POST' or request.method == 'GET':
+        user_information = dbf.get_user_information(logged_in_username)
 
-@app.route('/todays-intake/<username>', methods=['POST'])
-def todays_intake(username):
+        return render_template('home.html', logged_in_username=logged_in_username, user_information=user_information)
+    
+    else:
+        return render_template('home.html', logged_in_username=logged_in_username)
+
+
+@app.route('/todays-intake', methods=['GET', 'POST'])
+def todays_intake():
     current_datetime = datetime.now()
     date = current_datetime.strftime("%m/%d/%Y")
 
-    user_information = dbf.get_date_information(username, date)
+    user_information = dbf.get_date_information(logged_in_username, date)
     todays_calories = 0
 
     for instance in user_information:
         todays_calories += float(instance['calories'])
 
-    return render_template('todays-intake.html', user_information=user_information, todays_calories=todays_calories)
+    if logged_in_username != "":
+        return render_template('todays-intake.html', user_information=user_information, todays_calories=todays_calories)
+
+    else:
+        return redirect(url_for('index'))
 
 
 
@@ -83,14 +96,22 @@ def more_information(rowid):
     row_information = dbf.get_row_information(rowid)
     extra_information = dbf.get_more_info(row_information['food_item'], row_information['amount'])
 
-    return render_template('more-information.html', extra_information=extra_information)
+    if logged_in_username != "":
+        return render_template('more-information.html', extra_information=extra_information)
+
+    else:
+        return redirect(url_for('index'))
 
 
 @app.route('/edit/<rowid>')
 def edit(rowid):
     row_information = dbf.get_row_information(rowid)
 
-    return render_template('edit.html', row_information=row_information)
+    if logged_in_username != "":
+        return render_template('edit.html', row_information=row_information)
+
+    else:
+        return redirect(url_for('index'))
 
 
 @app.route('/process-edit/<rowid>', methods=['POST'])
@@ -102,14 +123,14 @@ def process_edit(rowid):
 
     dbf.edit_information(food_item, amount, calories, rowid)
 
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 
 @app.route('/delete/<rowid>')
 def delete(rowid):
     dbf.delete_information(rowid)
 
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 
 if __name__== '__main__':

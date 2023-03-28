@@ -12,7 +12,6 @@
     <h1>Today's Entries</h1>
     <table>
         <tr>
-          <th>Username</th>
           <th>Time</th>
           <th>Food Item</th>
           <th>Amount</th>
@@ -22,7 +21,6 @@
         </tr>
         {% for instance in user_information %}
             <tr>
-                <td>{{ instance["username"] }}</td>
                 <td>{{ instance["time"] }}</td>
                 <td>{{ instance["food_item"] }}</td>
                 <td>{{ instance["amount"] }}</td>
