@@ -12,17 +12,14 @@
     Gmail: testUser1@gmail.com
     Password: password
 
-
 # Add entries: Complete
 # Search for entries under a username: Complete
 # Edit/delete entries: Complete
 # Extra information of an entry: Complete
-# Today's intake: TBD
+# Today's intake: Complete
     More features?
-# Sign in/up: Works, TBD
-# Sign out: WIP
-# System revamp: TBD
-# Styling page: WIP
-
-
+# Sign in/up: Complete
+# Sign out: Complete
+# System revamp: Complete
+# Styling page: Basics Complete
 
