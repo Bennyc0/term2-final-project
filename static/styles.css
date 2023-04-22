@@ -11,13 +11,14 @@ a {
     }
 
 a :hover{
+    transition-duration: 1s;
     background-color: blue;
     box-shadow: 5px 5px 5px aquamarine;
-}
+    }
 
 .a-box {
     margin: 10px;
-}
+    }
 
 .content {
     margin: 0 auto;
@@ -108,5 +109,3 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
     }
-
-
