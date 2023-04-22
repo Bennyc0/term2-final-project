@@ -5,41 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/616ed73eb6.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 
 <body>
-    <h1>Today's Entries</h1>
-    <table>
-        <tr>
-          <th>Time</th>
-          <th>Food Item</th>
-          <th>Amount</th>
-          <th>Calories</th>
-          <th>Edit/Delete</th>
-          <th>More Information</th>
-        </tr>
-        {% for instance in user_information %}
+    <div class="info-pages">
+        <h1>Today's Entries</h1>
+        <table>
             <tr>
-                <td>{{ instance["time"] }}</td>
-                <td>{{ instance["food_item"] }}</td>
-                <td>{{ instance["amount"] }}</td>
-                <td>{{ instance["calories"] }}</td>
-
-                <td>
-                    <a href="{{ '/edit/%s' %instance.rowid }}">Edit</a>
-                    <a href="{{ '/delete/%s' %instance.rowid }}">Delete</a>
-                </td>
-
-                <td>
-                    <a href="{{ '/more-information/%s' %instance.rowid }}">More</a>
-                </td>
+            <th>Time</th>
+            <th>Food Item</th>
+            <th>Amount</th>
+            <th>Calories</th>
+            <th>Edit/Delete</th>
+            <th>More Information</th>
             </tr>
-        {% endfor %}
-      </table>  
+            {% for instance in user_information %}
+                <tr>
+                    <td>{{ instance["time"] }}</td>
+                    <td>{{ instance["food_item"] }}</td>
+                    <td>{{ instance["amount"] }}</td>
+                    <td>{{ instance["calories"] }}</td>
 
-      <p>Today's Calories: {{ todays_calories }}</p>
+                    <td>
+                        <a href="{{ '/edit/%s' %instance.rowid }}"><button class="btn"><i class="fa fa-edit"></i> Edit</button></a>
+                        <a href="{{ '/delete/%s' %instance.rowid }}"><button class="btn"><i class="fa fa-trash"></i> Delete</button></a>
+                    </td>
 
-      <a href="/home">Home</a>
+                    <td>
+                        <a href="{{ '/more-information/%s' %instance.rowid }}"><button class="btn"><i class="fa-solid fa-circle-info"></i> More</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>  
 
+        <div class="todays-calories">
+            <h3>Today's Calories: {{ todays_calories }}</h3>
+        </div>
+
+
+        <a href="/home"><button class="btn"><i class="fa fa-home"></i> Home</button></a>
+    </div>
+
+    <div class="footer-images">
+        <img src="/static/images/hamburger.png">
+        <img src="/static/images/vegetable.png">
+        <img src="/static/images/taco.png">
+    </div>
 </body>

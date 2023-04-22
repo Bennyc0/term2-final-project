@@ -5,56 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/616ed73eb6.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 
 <body>
-    <form action="/home" method="POST">
-        <div>
-            <div>
-                <label for="food_item">Enter Food Item:</label>
-                <input type="text" id="food_item" name="food_item" placeholder="Food Item">
-            </div>
-
-            <div>
-                <label for="amount">Enter Amount:</label>
-                <input type="text" id="amount" name="amount" value="100g">
-            </div>
-
-            <input type="submit" value="Add Entry">
+    <div class="info-pages">
+        <div class="container">
+            <form action="/home" method="POST">
+                <div class="field-row">
+                    <label for="food_item">Enter Food Item:</label>
+                    <input type="text" id="food_item" name="food_item" placeholder="Food Item">
+                </div>
+    
+                <div class="field-row">
+                    <label for="amount">Enter Amount:</label>
+                    <input type="text" id="amount" name="amount" value="100g">
+                </div>
+                
+                <input class="btn2" type="submit" value="Add Entry">
+            </form>
         </div>
-    </form>
 
-    <h1>Entries for {{ logged_in_username }}</h1>
-    <table>
-        <tr>
-          <th>Time</th>
-          <th>Food Item</th>
-          <th>Amount</th>
-          <th>Calories</th>
-          <th>Edit/Delete</th>
-          <th>More Information</th>
-        </tr>
-        {% for instance in user_information %}
+        <h1>Entries for {{ logged_in_username }}</h1>
+
+        <div class="a-box">
+            <a href="/todays-intake"><button class="btn"><i class="fa-solid fa-utensils"></i> Today's Intake</button></a>
+            <a href="/logout"><button class="btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>
+        </div>
+
+        <table>
             <tr>
-                <td>{{ instance["time"] }}</td>
-                <td>{{ instance["food_item"] }}</td>
-                <td>{{ instance["amount"] }}</td>
-                <td>{{ instance["calories"] }}</td>
-
-                <td>
-                    <a href="{{ '/edit/%s' %instance.rowid }}">Edit</a>
-                    <a href="{{ '/delete/%s' %instance.rowid }}">Delete</a>
-                </td>
-
-                <td>
-                    <a href="{{ '/more-information/%s' %instance.rowid }}">More</a>
-                </td>
+            <th>Time</th>
+            <th>Food Item</th>
+            <th>Amount</th>
+            <th>Calories</th>
+            <th>Edit/Delete</th>
+            <th>More Information</th>
             </tr>
-        {% endfor %}
-      </table>  
+            {% for instance in user_information %}
+                <tr>
+                    <td>{{ instance["time"] }}</td>
+                    <td>{{ instance["food_item"] }}</td>
+                    <td>{{ instance["amount"] }}</td>
+                    <td>{{ instance["calories"] }}</td>
 
-      <a href="/todays-intake">Today's Intake</a>
-      <a href="/logout">Logout</a>
+                    <td>
+                        <a href="{{ '/edit/%s' %instance.rowid }}"><button class="btn"><i class="fa fa-edit"></i> Edit</button></a>
+                        <a href="{{ '/delete/%s' %instance.rowid }}"><button class="btn"><i class="fa fa-trash"></i> Delete</button></a>
+                    </td>
+
+                    <td>
+                        <a href="{{ '/more-information/%s' %instance.rowid }}"><button class="btn"><i class="fa-solid fa-circle-info"></i> More</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>  
+    </div>
+
+    <div class="footer-images">
+        <img src="/static/images/hamburger.png">
+        <img src="/static/images/vegetable.png">
+        <img src="/static/images/taco.png">
+    </div>
 </body>
 </html>

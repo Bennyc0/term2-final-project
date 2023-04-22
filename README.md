@@ -22,3 +22,7 @@
 # Sign in/up: Works, TBD
 # Sign out: WIP
 # System revamp: TBD
+# Styling page: WIP
+
+
+

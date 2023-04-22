@@ -24,7 +24,7 @@ def login():
         return redirect(url_for('home'))
 
     else:
-        return render_template('login.html', error_message='Invalid Gmail or Password, Please Try Again')
+        return render_template('login.html', message='Invalid Gmail or Password, Please Try Again')
 
 
 @app.route('/sign-up')
@@ -47,7 +47,7 @@ def store_user():
 def logout():
     logged_in_username = ""
 
-    return redirect(url_for('index'))
+    return render_template('login.html', message='Successfully Logged Out!')
 
 
 @app.route('/home', methods=['GET', 'POST'])
